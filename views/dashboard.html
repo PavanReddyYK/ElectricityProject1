@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="/js/script.js"></script>
+</head>
+
+<body onload="getAllBills(), getAdminUser()">
+    <nav id="navbar" class="navbar bg-dark-subtle navbar-expand-md sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Electricity Bill</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-pills me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Mail Me</a> -->
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <div class="form-check form-switch">
+                        <input id="dark-theme-btn" class="btn btn-dark "
+                            onclick="handelLogout(sessionStorage.getItem('session_id'), sessionStorage.getItem('user_id'))"
+                            type="button" value="logout">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- <div id="contactus">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Mail Me</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row my-2">
+                            <div class=" col form-floating mb-3">
+                                <input type="email" class="form-control" id="name" placeholder="name">
+                                <label for="name">name</label>
+                            </div>
+                            <div class="col form-floating mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                                <label for="email">email</label>
+                            </div>
+                        </div>
+                        <div class="row my-2 form-floating mb-3">
+                            <input type="email" class="form-control" id="message" placeholder="message">
+                            <label for="message">message</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Connect</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   -->
+    <div class="row">
+        <div id="sidemenu" class="col-md-2"> 
+            <h3 class="mx-3">ADMIN PAGE</h3>
+            <ul>
+                <li>
+                    <div class=" d-flex justify-content-center">
+                        <img class="w-25 " src="https://img.icons8.com/?size=512&id=ckaioC1qqwCu&format=png" alt="...">
+                    </div>
+                    <div>
+                        Name: <span id="adminname"></span>
+                    </div>
+                    <div>
+                        Phone: <span id="adminphone"></span>
+                    </div>
+                </li>
+                <li id="getallbillsmenu" class="side-menu my-3 activesidebar" onclick="getAllBills()">All bills</li>
+                <li id="getallunpaidbillsmenu" class="side-menu my-3" onclick="getAllUnpaidBills()">Unpaid bills</li>
+                <li id="usersmenu" class="side-menu my-3" onclick="handelUnpaidFor3Months()">Not paid till 3 months
+                </li>
+                <li class="my-3">
+                    <input class="btn btn-primary " onclick="handelGenerateBill()" type="button" value="Generate bills">
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-10">
+            <h3 class="mx-3"> Table section</h3>
+            <main role="main" class="container " id="billsTbale">
+                <!--col-md-9 ml-sm-auto col-lg-10 px-4  -->
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Bill ID</th>
+                                <th>User ID</th>
+                                <th>Meter No</th>
+                                <th>Bill Gen Date</th>
+                                <th>Due Date</th>
+                                <th>units Consumed</th>
+                                <th>Amount</th>
+                                <th>Paid Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Add table rows dynamically here -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+
+            <main role="main" class="container " id="usersTable">
+                <!--col-md-9 ml-sm-auto col-lg-10 px-4  -->
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>User Id</th>
+                                <th>User Name</th>
+                                <th>User Phone</th>
+                                <th>User Type</th>
+                                <th>Block Status</th>
+                                <th>Pending Bills</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body-user">
+                            <!-- Add table rows dynamically here -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div class="my-3 d-flex justify-content-center pagenationcontainer" id="pagenationcontainer">
+        <!-- <span class="spanm mx-1" onclick="handelPrevious()">prev</span>
+        <span class="justify-content-center" id="pagination">
+        </span>
+        <span class="spanm mx-1" onclick="habdelNext()">next</span> -->
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+        integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</body>
+
+</html>

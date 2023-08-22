@@ -1,0 +1,96 @@
+/* * {
+    border: 1px solid red;
+} */
+
+.login-main-container {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form input[type="tel"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.login-form input[type="button"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.login-form input[type="button"]:hover {
+    background-color: #3c7fc6;
+}
+
+#helperText {
+    padding-top: 0px;
+    color: red;
+    font-size: 15px;
+}
+
+#sidemenu {
+    background-color: #474f58;
+    color: white;
+    padding-top: 30px;
+    min-height: 100vh;
+}
+
+ul {
+    list-style: none;
+}
+
+.spanm {
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.active {
+    color: blue;
+    font-size: 21px;
+    text-decoration: underline;
+}
+
+.side-menu:hover {
+    cursor: pointer;
+    user-select: none;
+    font-size: 17px;
+    text-decoration: underline;
+}
+
+.activesidebar:active {
+    color: blue;
+    font-size: 17px;
+    text-decoration: underline;
+}
+
+/* img {
+    width: 100px;
+    height: 100px;
+} */
